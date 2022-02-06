@@ -1,0 +1,27 @@
+<script>
+    var winWidth;
+    var winHeight;
+    if (window.innerWidth)
+        winWidth = window.innerWidth;
+    else if ((document.body) && (document.body.clientWidth))
+        winWidth = document.body.clientWidth;
+// 获取窗口高度
+    if (window.innerHeight)
+        winHeight = window.innerHeight;
+    else if ((document.body) && (document.body.clientHeight))
+        winHeight = document.body.clientHeight;
+    var ifmobile = winHeight/winWidth;
+    if (ifmobile > 1)
+        window.location.href='meumy2022m.html';
+    else
+        window.location.href='meumy2022pc.html';
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?91ccec902636fc301929faaab1fbae0a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>

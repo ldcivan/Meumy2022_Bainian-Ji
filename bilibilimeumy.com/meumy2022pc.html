@@ -1,0 +1,1048 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="/meumycomment/logo/icon.ico">
+        <title>Meumy2022 · 拜年纪</title>
+	<script type="text/javascript">
+	function display_alert()
+       {
+            alert("评论成功!!请注意，您的评论可能不会立刻出现在下方栏框!")
+       }
+       </script>
+	<script type="text/javascript">
+	function display_danmu()
+       {
+            alert("发送成功!(注意，这是该网页内留言，非哔哩哔哩视频内弹幕!)")
+       }
+       </script>
+    <link href="/meumycomment/css/app.30096fc2.css" rel="preload" as="style">
+    <link href="/meumycomment/css/app.30096fc2.css" rel="stylesheet">
+    <link href="/meumycomment/js/app.46c44ec6.js" rel="preload" as="script">
+    <style>
+	.bottom { position:  bottom: 5%; width:99%; background-color:rgb(0,0,0,0);align:center;}
+	#floor1 {z-index: 1;}
+	#floor2 {z-index: 2;}
+    </style>
+      <style>
+    /*body {
+      font-family: "Microsoft YaHei" ! important;
+      font-color:#222;
+    }
+    pre {
+      line-height: 2em;
+      font-family: "Microsoft YaHei" ! important;
+    }
+    h4 {
+      line-height: 2em;
+    }*/
+    #excellent_div[data-v-1d39a7a2]{
+        border-top-left-radius:15px;
+        border-top-right-radius:15px;
+        border-bottom-left-radius:15px;
+        border-bottom-right-radius:15px;
+    }
+    #danmuarea {
+      position: fixed;
+      background: rgb(0,0,0,0);
+      width:100%;
+      height: 445px;
+      margin-left: 0px;
+      margin-right: 0px;
+      top: 0;
+      z-index: 500;
+      pointer-events: none;
+    }
+    .center {
+      text-align: center;
+    }
+    .ctr {
+      position: fixed;
+      font-size: 1em;
+      z-index: 1000;
+      bottom: 0%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .danmu-animation-hide {
+      bottom: calc(0% - 3em);
+      transition: bottom 0.5s;
+    }
+    .danmu-animation-show {
+      bottom: 0%;
+      transition: bottom 0.5s;
+    }
+    .ctr-body {
+      position: relative;
+      background-color: rgb(255,255,255,0.5);
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.452);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      padding-left: 1em;
+      padding-right: 1em;
+      pointer-events: auto;
+      border-top-left-radius:10px;
+      border-top-right-radius:10px;
+      /*z-index: 500;*/
+    }
+    .c-toggle {
+      background-color: rgb(255,255,255,0.5);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 0px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      font-size: 0.8em;
+      position: absolute;
+      height: 1.5em;
+      width: 3em;
+      left: calc(50% - 1.5em);
+      top: -1.6em;
+      user-select: none;
+      cursor: pointer;
+      pointer-events: auto;
+      /*z-index: 500;*/
+    }
+    .c-show-danmu {
+      display: flex;
+      align-items: center;
+      margin-right: 2em;
+    }
+    .danmu-checkbox {
+      display: block;
+      width: 1.3em;
+      height: 1.3em;
+      border-radius: 1em;
+    }
+    .c-send-danmu {
+      display: flex;
+      align-items: center;
+    }
+    .danmu-form {
+      height: 2.5em;
+      box-sizing: border-box;
+      border-radius: 0px;
+      border: 1px solid rgb(161, 161, 161);
+      border-right: 0px;
+    }
+    .danmu-select-first {
+      margin-left: 0.5em;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    .danmu-button {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      border: 1px solid #007bff;
+      padding-left: 1em;
+      padding-right: 1em;
+      background-color: white;
+      color: #007bff;
+      cursor: pointer;
+    }
+    .danmu-button:hover {
+      background-color: #007bff;
+      color: white;
+    }
+    .danmu-button:active {
+      background-color: #0069da;
+    }
+
+
+
+    .oct-resource-outer {
+      width: 100%;
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      text-align: left;
+    }
+    .oct-resource-main {
+      flex-grow: 1;
+      max-width: 1000px;
+    }
+    .oct-resource-item {
+      background-color: rgba(0, 0, 0, 0.151);
+      margin-bottom: 1em;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .oct-resource-item-cover {
+      background-size: cover;
+      background-position: center;
+      height: 15em;
+      width: calc(15em * 1.6);
+      flex-grow: 0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: flex-end;
+      cursor: pointer;
+    }
+    .oct-resource-item-detail-c {
+      background-color: rgba(0, 0, 0, 0.2);
+      flex-grow: 1;
+      flex-shrink: 1;
+      text-align: end;
+    }
+    .oct-resource-item-title {
+      margin: 0.4em;
+      font-size: 1.5em;
+      color: rgba(240, 240, 240);
+      text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.26);
+      font-weight: bold;
+    }
+    .oct-resource-item-creator {
+      color: rgba(240, 240, 240);
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.26);
+      margin: 0.4em;
+    }
+    .oct-resource-item-intro-c {
+      flex-grow: 1;
+      margin: 1em;
+      color: rgb(219, 219, 219);
+      text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.616);
+    }
+    .oct-resource-item-intro-c >p{
+      margin: 0px;
+      text-indent: 2ch;
+    }
+    @media all and (max-width: 800px) {
+      .oct-resource-item {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .oct-resource-item-cover {
+        height: 13em;
+        width: calc(13em * 1.6);
+      }
+    }
+    @media all and (max-width: 350px) {
+      .oct-resource-outer {
+        font-size: 0.9rem;
+      }
+    }
+  </style><!--弹幕姬style-->
+  <script src="/meumycomment/js/jquery-2.2.0.min.js"></script>
+  <script src="/meumycomment/js/jquery.danmu.js"></script>
+    
+    <style tpe="text/css">/*弹幕姬style*/
+        /* ---------------------公共样式 -------------------*/
+
+        .none{
+            display: none;
+        }
+
+        .layout-root{
+            position: fixed;
+            background: rgb(0,0,0,0);
+            height: 100%;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+        }
+
+        .layout-content{
+            line-height: 44px;
+            font-weight: 300;
+            font-size: 1em;
+            color: #fff;
+            text-indent: 10px;
+        }
+
+        .layout-content .code{
+            line-height: 22px;
+            text-align: center;
+        }
+
+        p {
+            display: block;
+            -webkit-margin-before: 1em;
+            -webkit-margin-after: 1em;
+            -webkit-margin-start: 0px;
+            -webkit-margin-end: 0px;
+        }
+
+        .a_button{
+            outline: none;
+        }
+
+        .a_button {
+            border: none;
+            padding: 0.6em 1.2em;
+            background: #c0392b;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            margin: 3px auto;
+            border-radius: 2px;
+        }
+
+        button:hover, button:active, button:focus{
+            border: none;
+        }
+
+        /* ---------------------弹窗样式 -------------------*/
+        .dialog-face{
+            position: fixed;
+            background: #A00002;
+            height: 100%;
+            width: 100%;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+
+            -webkit-animation-duration: 500ms;
+            -moz-animation-duration:500ms;
+            -o-animation-duration:500ms;
+            animation-duration: 500ms;
+        }
+
+        .dialog-face.slipBottom[opacity="0"]{
+            display: none;
+        }
+
+        .dialog-face.slipUp{
+            opacity: 0.7;
+            -webkit-animation-name: dialogFaceSlipToUp;
+            -moz-animation-name: dialogFaceSlipToUp;
+            -o-animation-name: dialogFaceSlipToUp;
+            animation-name: dialogFaceSlipToUp;
+        }
+
+        .dialog-face.slipBottom{
+            opacity: 0;
+            visibility: hidden;
+            -webkit-animation-name: dialogFaceSlipToBottom;
+            -moz-animation-name: dialogFaceSlipToBottom;
+            -o-animation-name: dialogFaceSlipToBottom;
+            animation-name: dialogFaceSlipToBottom;
+        }
+
+        .dialog-root{
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+
+            -webkit-animation-duration: 500ms;
+            -moz-animation-duration: 500ms;
+            -o-animation-duration: 500ms;
+            animation-duration: 500ms;
+            -webkit-perspective: 1300px;
+            -moz-perspective: 1300px;
+            perspective: 1300px;
+            width: 70%;
+            height: 75%;
+        }
+
+        .dialog-root.slipUp{
+            top: 50%;
+            opacity: 1;
+
+            -webkit-animation-name: dialogSlipToUp;
+            -moz-animation-name: dialogSlipToUp;
+            -o-animation-name: dialogSlipToUp;
+            animation-name: dialogSlipToUp;
+            -webkit-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        .dialog-root.slipBottom{
+            top: 100%;
+            opacity: 0.3;
+            -webkit-animation-duration: 500ms;
+            -moz-animation-duration: 500ms;
+            -o-animation-duration: 500ms;
+            animation-duration: 500ms;
+            -webkit-animation-name: dialogSlipToBottom;
+            -moz-animation-name: dialogSlipToBottom;
+            -o-animation-name: dialogSlipToBottom;
+            animation-name: dialogSlipToBottom;
+            -webkit-transform: translate(-50%, 0);
+            -o-transform: translate(-50%, 0);
+            -moz-transform: translate(-50%, 0);
+            -ms-transform: translate(-50%, 0);
+            transform: translate(-50%, 0);
+        }
+
+        .dialog-wrapper{
+            background: rgb(0,0,0,0);
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+
+            -webkit-animation-duration: 500ms;
+            -moz-animation-duration: 500ms;
+            -o-animation-duration: 500ms;
+            animation-duration: 500ms;
+            -webkit-transform-origin: 50% 100%;
+            -moz-transform-origin: 50% 100%;
+            -ms-transform-origin: 50% 100%;
+            -o-transform-origin:50% 100%;
+            transform-origin: 50% 100%;
+        }
+
+        .dialog-wrapper.slipUp{
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            -ms-transform: rotateX(0deg);
+            -o-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+            -webkit-animation-name: contentSlipToUp;
+            -moz-animation-name: contentSlipToUp;
+            -o-animation-name: contentSlipToUp;
+            animation-name: contentSlipToUp;
+        }
+
+        .dialog-wrapper.slipBottom{
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            -ms-transform: rotateX(90deg);
+            -o-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+            -webkit-animation-name: contentSlipToBottom;
+            -moz-animation-name: contentSlipToBottom;
+            -o-animation-name: contentSlipToBottom;
+            animation-name: contentSlipToBottom;
+        }
+
+        .dialog-header{
+            height: 75px;
+            background: #d94839;
+            text-align: center;
+        }
+
+        .dialog-header span{
+            font-size: 28px;
+            line-height: 75px;
+            color:#F6CBC6;
+        }
+
+        .dialog-content{
+            font-weight: 300;
+            font-size: 1.15em;
+            color: #fff;
+            padding: 15px 40px 20px 40px;
+            margin: 0;
+        }
+
+
+        .dialog-content p{
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .dialog-footer{
+            padding-top:3%;
+        }
+        /* ---------------------动画关键帧 -------------------*/
+
+        @keyframes dialogFaceSlipToUp  {
+            0%{
+               opacity: 0;
+            }
+            100%{
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes dialogFaceSlipToBottom {
+            0%{
+                opacity: 0.7;
+                visibility:visible;
+            }
+            100%{
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+
+        @keyframes dialogSlipToUp  {
+            0%{
+                top: 100%;
+                opacity: 0.3;
+            }
+            100%{
+                top: 50%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes dialogSlipToBottom  {
+            0%{
+                top: 50%;
+                opacity: 1;
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+            100%{
+                top: 100%;
+                opacity: 0.3;
+                -webkit-transform: translate(-50%, 0);
+                -moz-transform: translate(-50%, 0);
+                -ms-transform: translate(-50%, 0);
+                -o-transform: translate(-50%, 0);
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes contentSlipToUp  {
+            0%{
+                -webkit-transform: rotateX(90deg);
+                -moz-transform: rotateX(90deg);
+                -ms-transform: rotateX(90deg);
+                -o-transform: rotateX(90deg);
+                transform: rotateX(90deg);
+            }
+            100%{
+                -webkit-transform: rotateX(0deg);
+                -moz-transform: rotateX(0deg);
+                -ms-transform: rotateX(0deg);
+                -o-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+            }
+        }
+
+        @keyframes contentSlipToBottom  {
+            0%{
+                -webkit-transform: rotateX(0deg);
+                -moz-transform: rotateX(0deg);
+                -ms-transform: rotateX(0deg);
+                -o-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+            }
+            60%{
+                -webkit-transform: rotateX(60deg);
+                -moz-transform: rotateX(60deg);
+                -ms-transform: rotateX(60deg);
+                -o-transform: rotateX(60deg);
+                transform: rotateX(60deg);
+            }
+            100%{
+                -webkit-transform: rotateX(90deg);
+                -moz-transform: rotateX(90deg);
+                -ms-transform: rotateX(90deg);
+                -o-transform: rotateX(90deg);
+                transform: rotateX(90deg);
+            }
+        }
+    </style>
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?91ccec902636fc301929faaab1fbae0a";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+    </head>
+    <body bgcolor=#A00002 style="margin: 0px;" onload="resumer()">
+
+    <!--<div class="fixed layout-root">
+        <div class="layout-content">
+            <button onclick="toggleDialog(true)">显示弹出框</button>
+        </div>
+    </div>-->
+    <!--<div id="dialog-face" class="none">
+    </div>
+    <div id="dialog" class="none">
+        <div id="dialog-wrapper">-->
+            <!--<div class="dialog-header">
+                <span>弹窗效果</span>
+            </div>-->
+            <!--<div class="dialog-content">
+                <center>
+                    <a href="https://space.bilibili.com/674421433"> <img src="/meumycomment/pic/pre.jpg" height="95%"></a>
+                </center>
+            </div>
+        </div>
+        <div class="dialog-footer">
+            <button class="a_button" onclick="toggleDialog(false)">关闭</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function toggleDialog(show){
+            var animationClass = show ? "slipUp" : "slipBottom";
+            var animation = function(){
+                var ele = document.getElementById("dialog-face");
+                ele.className = "dialog-face " + animationClass;
+                ele = document.getElementById("dialog");
+                ele.className = "dialog-root " + animationClass;
+                ele = document.getElementById("dialog-wrapper");
+                ele.className = "dialog-wrapper " + animationClass;
+            };
+
+            setTimeout(animation, 100);
+        }
+    </script>  -->      
+        
+        
+        
+        
+        <center>
+
+	<!--<embed src="./gonggao.html" width="100%" height="60" type="text/html"/>-->
+<div id="floor2" style="background-image: url('/meumycomment/pic/bg1.jpg');background-size:100% auto;background-repeat:no-repeat;">
+    <div style="padding-top:7%;">
+        <img src="./meumycomment/logo/umylogo.png" alt="doge" width="12%">   <img src="./meumycomment/logo/merrylogo.png" alt="mie~~~~" width="12%"><br>
+        <img src="./meumycomment/logo/logototal.png" alt="bnj" width="40%"><br><br>
+        <!--<font size="5" color="#000000">----Meumy2022 · 拜年纪----</font><br>-->
+        <font size="2" color="#C0C0C0">如页面出现异常，请 电邮至ldcivan@pro-ivan.cn 或 前往<a href="https://space.bilibili.com/11022578"><font size="2" color="#808080">Bilibili</font></a>与我们联系</font><br>
+	<font size="2" color="#C0C0C0"></font><br>
+
+<h1><font color="#F0F0F0"><embed src="./clock.html" width="80%" height="auto"></embed></font></h1>
+<br>
+
+<div data-v-243171bf="" id="MeUmy_box" class="MeUmy_box">
+    <div data-v-243171bf="" id="single_box" class="single_box">
+        <div data-v-243171bf="" class="img_box umy_head">
+            <img data-v-243171bf="" src="/meumycomment/pic/umyhead.jpg" oncontextmenu="return false" onselectstart="return false" draggable="false" class="head_img">
+        </div>
+    <div data-v-09b8ce50="" data-v-243171bf="" class="info_body">
+        <div data-v-09b8ce50="" class="info_box">
+            <div data-v-09b8ce50="" class="name_box">
+                <span data-v-09b8ce50="" class="user"> 呜米-光能雪狼 </span>
+                <div data-v-09b8ce50="" class="line"></div>
+                    <span data-v-09b8ce50="" class="tag">Kira☆Kira☆~</span> 
+                </div>
+                <div data-v-09b8ce50="" class="net">
+                    <a data-v-09b8ce50="" href="https://weibo.com/u/7079069131" target="__blank" class="net_text slightFadeInTopRight"> 微博：呜米嗷呜 </a>
+                    <a data-v-09b8ce50="" href="https://mht.meumy.club/#/" target="__blank" class="net_text slightFadeInRight"> MeUmy的棉花糖 </a>
+                    <a data-v-09b8ce50="" href="https://music.163.com/#/user/home?id=1306304320" target="__blank" class="net_text slightFadeInBottomRight"> 网易云：呜米嗷嗷嗷 </a>
+                </div>
+            </div>
+            <div data-v-09b8ce50="" class="bottom_box">
+                <button data-v-09b8ce50="" class="btn Umy_btn" onclick="window.open('https://live.bilibili.com/22384516','_blank')">
+                    <span data-v-09b8ce50="" class="animate__animated animate__fadeIn animate__faster">直播间</span>
+                </button>
+                <button data-v-09b8ce50="" class="btn Umy_btn" onclick="window.open('https://space.bilibili.com/617459493','_blank')">
+                    <span data-v-09b8ce50="" class="animate__animated animate__fadeIn animate__faster">主页</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div data-v-243171bf="" id="single_box" class="single_box">
+        <div data-v-09b8ce50="" data-v-243171bf="" class="info_body">
+            <div data-v-09b8ce50="" class="info_box">
+                <div data-v-09b8ce50="" class="name_box">
+                    <span data-v-09b8ce50="" class="user"> 咩栗-电击小羊 </span>
+                    <div data-v-09b8ce50="" class="line"></div>
+                    <span data-v-09b8ce50="" class="tag">全力闪光✨</span>
+                </div>
+                <div data-v-09b8ce50="" class="net">
+                    <a data-v-09b8ce50="" href="https://weibo.com/u/7080286241" target="__blank" class="net_text slightFadeInTopRight"> 微博：电击咩阿栗 </a>
+                    <a data-v-09b8ce50="" href="https://mht.meumy.club/#/" target="__blank" class="net_text slightFadeInRight"> MeUmy的棉花糖 </a>
+                    <a data-v-09b8ce50="" href="https://music.163.com/#/user/home?id=1356709812" target="__blank" class="net_text slightFadeInBottomRight"> 网易云：咩栗咩咩咩 </a>
+                </div>
+            </div>
+            <div data-v-09b8ce50="" class="bottom_box">
+                <button data-v-09b8ce50="" class="btn Merry_btn" onclick="window.open('https://live.bilibili.com/8792912','_blank')">
+                    <span data-v-09b8ce50="" class="animate__animated animate__fadeIn animate__faster">直播间</span>
+                </button>
+                <button data-v-09b8ce50="" class="btn Merry_btn" onclick="window.open('https://space.bilibili.com/745493/','_blank')">
+                    <span data-v-09b8ce50="" class="animate__animated animate__fadeIn animate__faster">主页</span>
+                </button>
+            </div>
+        </div>
+        <div data-v-243171bf="" class="img_box merry_head">
+            <img data-v-243171bf="" src="/meumycomment/pic/merryhead.jpg" oncontextmenu="return false" onselectstart="return false" draggable="false" class="head_img">
+        </div>
+    </div>
+</div><!--别看了，你看这个毫无排版的玩意就知道是从https://meumy.club/里抠出来的啦！-->
+
+<br><br>
+</div>
+<div style="padding-top:8%;">
+<h2><font color="#F0F0F0">拜年纪·正片 现已发布</font></h2>
+<iframe id="video" src="//player.bilibili.com/player.html?aid=208703426&bvid=BV1aS4y1y7wd&cid=429046249&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="85%"> </iframe>
+</div>
+<br><br><br><br>
+<img src="./meumycomment/pic/line.png" height="10px" width="80%">
+<br>
+<h2><font color="#F0F0F0">拜年纪·单品 正在收集</font></h2>
+
+
+<!-- 从这里到script结束 是单品部分 -->
+<div class="oct-resource-outer"><div class="oct-resource-main" id="oct-resource-main"></div></div>
+<script>
+    window.addEventListener('load', function() {
+        // 解析数据
+        let parse_data = function (item_list) {
+            let template = function (title, bvid, cover, authors, intros) {
+                let url = 'https://www.bilibili.com/video/' + bvid
+                let rst = ''
+                rst += `<div class="oct-resource-item">
+                    <div
+                        class="oct-resource-item-cover"
+                        style="background-image: url(${cover})"
+                        onclick="window.open('${url}', '_blank', 'noopener,noreferrer')"
+                    >
+                        <div class="oct-resource-item-detail-c">
+                            <div class="oct-resource-item-title">${title}</div>
+                            <div class="oct-resource-item-creator">
+                                创作者：`
+                for (let author of authors) {
+                    rst += `<a
+                        href="https://space.bilibili.com/${author.uid}"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        onclick="event.stopPropagation()"
+                    ><font color="#F0F0F0">@${author.name}</font></a>`
+                }                        
+                rst +=     `</div>
+                        </div>
+                    </div>
+                    <div class="oct-resource-item-intro-c">`
+                for (let intro of intros) {
+                    rst += `<p>${intro}</p>`
+                }
+                rst += `</div>
+                </div>`
+                return rst
+            }
+            let rst = ''
+            for (let i of item_list){
+                console.log(i)
+                rst += template(i.title, i.bvid, i.cover, i.authors, i.intros)
+            }
+            document.getElementById('oct-resource-main').innerHTML = rst
+        }
+
+        // 获取爬虫数据
+        let get_spider = function (callback) {
+            fetch('https://meumy.club/new_year_api', {
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json().then(data => {
+                let item_list = []
+                for (let i of data.rst){
+                    item_list.push({
+                        title: i.title,
+                        bvid: i.rid,
+                        cover: 'https://meumy.club/pics/'+i.pics[0],
+                        authors: [
+                            {
+                                name: i.creator.name,
+                                uid: i.creator.uid
+                            },
+                        ],
+                        intros: i.info.split('\n'),
+                    })
+                }
+                callback(item_list)
+            }))
+        }
+
+        // 自定义数据
+        let item_list = [
+            {
+                title: '1-拜年纪开幕OP',
+                bvid: 'BV1bS4y1f73s',
+                cover: 'https://i0.hdslb.com/bfs/archive/bee0cd3372c06485a0960510367438289531490e.jpg@640w_400h_1c.webp',
+                authors: [
+                    {
+                        name: '小铅森林',
+                        uid: '28258438'
+                    },
+                ],
+                intros: [
+                    '新年快乐！MeUmy拜年纪终于和大家见面啦！非常感谢各位老师的付出！希望大家看的开心！',
+                    '祝大家虎年大吉！万事如意！',
+                    'MeUmy天下第一！',
+                ]
+            },
+            {
+                title: '2-【草原难受】不想过春节可以不过',
+                bvid: 'BV1Hm4y1S7uX',
+                cover: 'https://i0.hdslb.com/bfs/archive/bee0cd3372c06485a0960510367438289531490e.jpg@640w_400h_1c.webp',
+                authors: [
+                    {
+                        name: '万命の沙皮犬',
+                        uid: '28699803'
+                    },
+                ],
+                intros: [
+                    '新年快乐！MeUmy拜年纪终于和大家见面啦！非常感谢各位老师的付出！希望大家看的开心！',
+                    '祝大家虎年大吉！万事如意！',
+                    'MeUmy天下第一！',
+                ]
+            },
+            {
+                title: '2022 MeUmy拜年纪',
+                bvid: 'BV1aS4y1y7wd',
+                cover: '',
+                authors: [
+                    {
+                        name: '呜米咩栗的草原日常',
+                        uid: '674421433'
+                    },
+                ],
+                intros: [
+                    '新年快乐！MeUmy拜年纪终于和大家见面啦！非常感谢各位老师的付出！希望大家看的开心！',
+                    '祝大家虎年大吉！万事如意！',
+                    'MeUmy天下第一！',
+                ]
+            },
+        ]
+
+        // 暂时调用爬虫
+        get_spider(parse_data)
+        // 自定义数据调用
+        //parse_data(item_list)
+    })
+</script>
+<!-- 单品部分结束 -->
+
+
+
+<br>
+<!--<h2><font color="#F0F0F0">拜年纪·贺图</font></h2>-->
+<br>
+<img src="./meumycomment/pic/line.png" height="10px" width="80%">
+<!--<div class="bottom">
+	<div id="ct1">
+	    <a name="comment"><h3><font color="#F0F0F0">~草原上的留言板~</font></h3></a>
+	</div>
+	<div data-v-1d39a7a2="" class="excellent_div">
+	<div  style="padding-top:160;">
+	<form action="./meumycomment/commentpc.php" method="post">
+            昵称:<input type="text" name="channel0Title" placeholder="请输入昵称(小于25字)" required="required" maxlength="25"><br>
+    	    评论:<input type="text" name="channel0Gain" placeholder="要讲文明哟~(小于200字)" required="required" maxlength="200"><br><br>
+            <input data-v-09b8ce50="" type="submit" id ="submitButton" value="发送" onclick="display_alert()" class="btn Umy_btn" >
+        </form>
+    </div>
+	<iframe id="comment" name="comment" src="./meumycomment/comment.html" frameborder="0" width="60%" height="400"> </iframe><br>
+
+</div>
+</div>-->
+	<br><br><font size=2 color=grey>名片代码来自 <a href="https://meumy.club/"><font size=2 color=grey>八角老师的 meumy.club</font></a> ，其余部分为pro-ivan手搓。敬请指正。</font><br><br><br><br>
+</div>
+        </center>
+<script type="text/javascript">
+    document.getElementById("video").style.height=document.getElementById("video").scrollWidth*0.75+"px";
+</script>
+<script src="./meumycomment/js/app.46c44ec6.js"></script>
+<!--黑背景和弹幕区-->
+<div id="danmuarea">
+  <div id="danmu" >
+  </div>
+</div>
+<!--控制区-->
+<div class="ctr" id="ctr" >
+  <div class="ctr-body" >
+    <!--<button type="button"  onclick="resumer() ">弹幕开始/继续</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button"  onclick="pauser()">弹幕暂停</button>  &nbsp;&nbsp;&nbsp;&nbsp;-->
+    <!--弹幕透明度:
+    <input type="range" name="op" id="op" onchange="op()" value="100"> <br>
+    当前弹幕运行时间(秒)：<span id="time"></span>&nbsp;&nbsp;
+    设置当前弹幕时间(秒)： <input type="text" id="set_time" max=20 />
+    <button type="button"  onclick="settime()">设置</button>-->
+    <div class="c-toggle" id="danmu_toggle_button">&ensp;隐藏</div>
+    <div class="c-show-danmu">
+      <label for="ishide">显示留言:</label>
+      <input type='checkbox' checked='checked' id='ishide' value='is' onchange='changehide()' class="danmu-checkbox">
+    </div>
+    <div class="c-send-danmu">
+      <label for="text">留言:</label>
+      <select name="color" id="color" class="danmu-form danmu-select danmu-select-first">
+        <option value="white">白色</option>
+        <option value="red">红色</option>
+        <option value="green">绿色</option>
+        <option value="blue">蓝色</option>
+        <option value="yellow">黄色</option>
+      </select>
+      <select name="size" id="text_size" class="danmu-form danmu-select">
+        <option value="1">大文字</option>
+        <option value="0">小文字</option>
+      </select>
+      <select name="position" id="position" class="danmu-form danmu-select">
+        <option value="0">滚动</option>
+        <option value="1">顶端</option>
+        <option value="2">底端</option>
+      </select>
+      <input type="textarea" id="text" max=300 class="danmu-form danmu-input"/>
+      <button type="button" onclick="send();display_danmu()" class="danmu-form danmu-button">发送</button>
+    </div>
+  </div>
+</div>
+<script>
+  // 控制栏
+  window.addEventListener('load', function() {
+    let show_ctl = true
+    let toggle_button_dom = document.getElementById('danmu_toggle_button')
+    let ctr_dom = document.getElementById('ctr')
+    toggle_button_dom.addEventListener('click', ()=>{
+      show_ctl = !show_ctl
+      if (show_ctl) {
+        ctr_dom.classList.remove('danmu-animation-hide')
+        ctr_dom.classList.add('danmu-animation-show')
+        toggle_button_dom.innerHTML = '&ensp;隐藏'
+      }
+      else {
+        ctr_dom.classList.remove('danmu-animation-show')
+        ctr_dom.classList.add('danmu-animation-hide')
+        toggle_button_dom.innerHTML = '&ensp;显示'
+      }
+    })
+  })
+  //初始化
+  $("#danmu").danmu({
+    left:0,
+    top:0,
+    height:"100%",
+    width:"100%",
+    speed:9000,
+    sumTime:6000,
+    danmuLoop:true,
+    opacity:0.6,
+    font_size_small:16,
+    font_size_big:24,
+    top_botton_danmu_time:6000
+  });
+  query();//  从后端获取弹幕并添加
+
+
+    //一个定时器，监视弹幕时间并更新到页面上
+  function timedCount(){
+    var a = $('#danmu').data("nowTime")
+    $("#time").text(a);
+    if(a >= 1100){
+        $('#danmu').danmu('danmuStop');
+        $('#danmu').danmu('danmuStart');
+    }
+    t=setTimeout("timedCount()",50)
+
+  }
+  timedCount();
+
+
+
+  function starter(){
+    $('#danmu').danmu('danmuStart');
+  }
+  function pauser(){
+    $('#danmu').danmu('danmuPause');
+  }
+  function resumer(){
+    $('#danmu').danmu('danmuResume');
+  }
+  function stoper(){
+    $('#danmu').danmu('danmuStop');
+  }
+  function getime(){
+    alert($('#danmu').data("nowTime"));
+  }
+  function getpaused(){
+    alert($('#danmu').data("paused"));
+  }
+  //添加弹幕测试  这个函数没有调用
+  function add() {
+    var newd =
+    {"text": "new2", "color": "green", "size": "1", "position": "0", "time": 60};
+    $('#danmu').danmu("addDanmu", newd);
+  }
+  //向后端添加弹幕测试  这个函数没有调用
+  function insert(){
+    var newd= { "text":"new2" , "color":"green" ,"size":"1","position":"0","time":50};
+    str_newd=JSON.stringify(newd);
+    $.post("stone.php",{danmu:str_newd},function(data,status){alert(data)});
+  }
+  //从后端获取到弹幕并添加
+  function query() {
+    $.get("query.php",function(data,status){
+      var danmu_from_sql=eval(data);
+      for (var i=0;i<danmu_from_sql.length;i++){
+        var danmu_ls=eval('('+danmu_from_sql[i]+')');
+        $('#danmu').danmu("addDanmu",danmu_ls);
+      }
+    });
+  }
+  //发送弹幕，使用了文档README.md第7节中推荐的方法
+  function send(){
+    var text = document.getElementById('text').value;
+    var color = document.getElementById('color').value;
+    var position = document.getElementById('position').value;
+            var time_orin = $('#danmu').data("nowTime")+1;
+            if(time_orin>1000){
+                var time= (time_orin-1000)*10;
+            }
+            else{
+                var time=time_orin;
+            }
+    var size =document.getElementById('text_size').value;
+    var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+'}';
+    $.post("stone.php",{danmu:text_obj});
+    var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+',"isnew":""}';
+    var new_obj=eval('('+text_obj+')');
+    $('#danmu').danmu("addDanmu",new_obj);
+    document.getElementById('text').value='';
+  }
+  //调整透明度函数
+  function op(){
+    var op=document.getElementById('op').value;
+    $('#danmu').danmu("setOpacity",op/100);
+  }
+
+  //调隐藏 显示
+  function changehide() {
+    //var op = document.getElementById('op').value;
+    //op = op / 100;
+    if (document.getElementById("ishide").checked) {
+      $("#danmu").danmu("setOpacity",0.6);
+    } else {
+      $("#danmu").danmu("setOpacity",0);
+
+    }
+  }
+
+  //设置弹幕时间
+  function settime(){
+    var t=document.getElementById("set_time").value;
+    t=parseInt(t)
+    $('#danmu').danmu("setTime",t);
+  }
+  //推荐方法
+  function send_danmu() {
+	var text = document.getElementById('danmu_text').value;
+	var color = danmu_color;
+	var position_select = jQuery("[name='danmu_position']").filter(":checked");
+	var position = position_select.attr("value")
+	var position_size = jQuery("[name='danmu_size']").filter(":checked");
+	var size = position_size.attr("value");
+	var time = jQuery('#danmu').data("nowTime") +1;
+	//以上部分为从页面控件中获取用户输入的弹幕内容及选择的颜色等选项
+	var text_obj = '{ text:"' + text + '",color:"' + color + '",size:"' + size + '",position:"' + position + '",time:' + time + '}';    //构造字符串形式的弹幕对象
+	if (url_to_post_danmu)    //url_to_post_danmu 为接受推送的后端地址
+		jQuery.post(url_to_post_danmu, {
+			danmu: text_obj
+		});       //向服务器推送danmu对象的字符串形式
+	var text_obj = '{ text:"' + text + '",color:"' + color + '",size:"' + size + '",position:"' + position + '",time:' + time + ',isnew:""}';   //构造加上了innew属性的字符串danmu对象
+	var new_obj = eval('(' + text_obj + ')');       //转化为js对象
+	jQuery('#danmu').danmu("addAanmu", new_obj);    //向插件中添加该danmu对象
+  };
+
+</script>
+    </body>
+</html>
+<!--啊哈哈哈哈拜年纪来咯！-->
+<!--也不知道这个网页究竟能不能和大家见面，如果您作为观众看到了这个，那么我十分荣幸能为拜年纪制作组、为你们带来价值！(也感谢空空和八角老师的协力支持！)-->
+<!--最后，祝您和您的家人在新的一年里身体健康，万事如意！-->
+<!--Pro-Ivan 敬至-->

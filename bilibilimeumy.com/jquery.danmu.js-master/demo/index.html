@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Demo</title>
+  <style>
+    /*body {
+      font-family: "Microsoft YaHei" ! important;
+      font-color:#222;
+    }
+    pre {
+      line-height: 2em;
+      font-family: "Microsoft YaHei" ! important;
+    }
+    h4 {
+      line-height: 2em;
+    }*/
+    #danmuarea {
+      position: fixed;
+      background: #222;
+      width:100%;
+      height: 445px;
+      margin-left: 0px;
+      margin-right: 0px;
+      z-index: 750;
+    }
+    .center {
+      text-align: center;
+    }
+    .ctr {
+      position: fixed;
+      font-size: 1em;
+      z-index: 1000;
+      bottom: 0%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .danmu-animation-hide {
+      bottom: calc(0% - 3em);
+      transition: bottom 0.5s;
+    }
+    .danmu-animation-show {
+      bottom: 0%;
+      transition: bottom 0.5s;
+    }
+    .ctr-body {
+      position: relative;
+      background-color: rgb(255,255,255,0.5);
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.452);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      padding-left: 1em;
+      padding-right: 1em;
+      z-index: 1500;
+    }
+    .c-toggle {
+      background-color: rgb(255,255,255,0.5);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 0px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      font-size: 0.8em;
+      position: absolute;
+      height: 1.5em;
+      width: 3em;
+      left: calc(50% - 1.5em);
+      top: -1.6em;
+      user-select: none;
+      cursor: pointer;
+      z-index: 1500;
+    }
+    .c-show-danmu {
+      display: flex;
+      align-items: center;
+      margin-right: 2em;
+    }
+    .danmu-checkbox {
+      display: block;
+      width: 1.3em;
+      height: 1.3em;
+      border-radius: 1em;
+    }
+    .c-send-danmu {
+      display: flex;
+      align-items: center;
+    }
+    .danmu-form {
+      height: 2.5em;
+      box-sizing: border-box;
+      border-radius: 0px;
+      border: 1px solid rgb(161, 161, 161);
+      border-right: 0px;
+    }
+    .danmu-select-first {
+      margin-left: 0.5em;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    .danmu-button {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      border: 1px solid #007bff;
+      padding-left: 1em;
+      padding-right: 1em;
+      background-color: white;
+      color: #007bff;
+      cursor: pointer;
+    }
+    .danmu-button:hover {
+      background-color: #007bff;
+      color: white;
+    }
+    .danmu-button:active {
+      background-color: #0069da;
+    }
+  </style><!--弹幕姬style-->
+  <script src="/meumycomment/js/jquery-2.2.0.min.js"></script>
+  <script src="/meumycomment/js/jquery.danmu.js"></script>
+</head>
+
+<body class="center" bgcolor=#A00002 onload="resumer()">
+<!--黑背景和弹幕区-->
+<div id="danmuarea">
+  <div id="danmu" >
+  </div>
+</div>
+<!--控制区-->
+<div class="ctr" id="ctr" >
+  <div class="ctr-body" >
+    <!--<button type="button"  onclick="resumer() ">弹幕开始/继续</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button"  onclick="pauser()">弹幕暂停</button>  &nbsp;&nbsp;&nbsp;&nbsp;-->
+    <!--弹幕透明度:
+    <input type="range" name="op" id="op" onchange="op()" value="100"> <br>
+    当前弹幕运行时间(秒)：<span id="time"></span>&nbsp;&nbsp;
+    设置当前弹幕时间(秒)： <input type="text" id="set_time" max=20 />
+    <button type="button"  onclick="settime()">设置</button>-->
+    <div class="c-toggle" id="danmu_toggle_button">隐藏</div>
+    <div class="c-show-danmu">
+      <label for="ishide">显示弹幕:</label>
+      <input type='checkbox' checked='checked' id='ishide' value='is' onchange='changehide()' class="danmu-checkbox">
+    </div>
+    <div class="c-send-danmu">
+      <label for="text">发弹幕:</label>
+      <select name="color" id="color" class="danmu-form danmu-select danmu-select-first">
+        <option value="white">白色</option>
+        <option value="red">红色</option>
+        <option value="green">绿色</option>
+        <option value="blue">蓝色</option>
+        <option value="yellow">黄色</option>
+      </select>
+      <select name="size" id="text_size" class="danmu-form danmu-select">
+        <option value="1">大文字</option>
+        <option value="0">小文字</option>
+      </select>
+      <select name="position" id="position" class="danmu-form danmu-select">
+        <option value="0">滚动</option>
+        <option value="1">顶端</option>
+        <option value="2">底端</option>
+      </select>
+      <input type="textarea" id="text" max=300 class="danmu-form danmu-input"/>
+      <button type="button" onclick="send();" class="danmu-form danmu-button">发送</button>
+    </div>
+  </div>
+</div>
+<script>
+  // 控制栏
+  window.addEventListener('load', function() {
+    let show_ctl = true
+    let toggle_button_dom = document.getElementById('danmu_toggle_button')
+    let ctr_dom = document.getElementById('ctr')
+    toggle_button_dom.addEventListener('click', ()=>{
+      show_ctl = !show_ctl
+      if (show_ctl) {
+        ctr_dom.classList.remove('danmu-animation-hide')
+        ctr_dom.classList.add('danmu-animation-show')
+        toggle_button_dom.innerHTML = '隐藏'
+      }
+      else {
+        ctr_dom.classList.remove('danmu-animation-show')
+        ctr_dom.classList.add('danmu-animation-hide')
+        toggle_button_dom.innerHTML = '显示'
+      }
+    })
+  })
+  //初始化
+  $("#danmu").danmu({
+    left:0,
+    top:0,
+    height:"100%",
+    width:"100%",
+    speed:9000,
+    sumTime:6000,
+    danmuLoop:true,
+    opacity:0.6,
+    font_size_small:16,
+    font_size_big:24,
+    top_botton_danmu_time:6000
+  });
+  query();//  从后端获取弹幕并添加
+
+
+    //一个定时器，监视弹幕时间并更新到页面上
+  function timedCount(){
+    var a = $('#danmu').data("nowTime")
+    $("#time").text(a);
+    if(a >= 1100){
+        $('#danmu').danmu('danmuStop');
+        $('#danmu').danmu('danmuStart');
+    }
+    t=setTimeout("timedCount()",50)
+
+  }
+  timedCount();
+
+
+
+  function starter(){
+    $('#danmu').danmu('danmuStart');
+  }
+  function pauser(){
+    $('#danmu').danmu('danmuPause');
+  }
+  function resumer(){
+    $('#danmu').danmu('danmuResume');
+  }
+  function stoper(){
+    $('#danmu').danmu('danmuStop');
+  }
+  function getime(){
+    alert($('#danmu').data("nowTime"));
+  }
+  function getpaused(){
+    alert($('#danmu').data("paused"));
+  }
+  //添加弹幕测试  这个函数没有调用
+  function add() {
+    var newd =
+    {"text": "new2", "color": "green", "size": "1", "position": "0", "time": 60};
+    $('#danmu').danmu("addDanmu", newd);
+  }
+  //向后端添加弹幕测试  这个函数没有调用
+  function insert(){
+    var newd= { "text":"new2" , "color":"green" ,"size":"1","position":"0","time":50};
+    str_newd=JSON.stringify(newd);
+    $.post("stone.php",{danmu:str_newd},function(data,status){alert(data)});
+  }
+  //从后端获取到弹幕并添加
+  function query() {
+    $.get("query.php",function(data,status){
+      var danmu_from_sql=eval(data);
+      for (var i=0;i<danmu_from_sql.length;i++){
+        var danmu_ls=eval('('+danmu_from_sql[i]+')');
+        $('#danmu').danmu("addDanmu",danmu_ls);
+      }
+    });
+  }
+  //发送弹幕，使用了文档README.md第7节中推荐的方法
+  function send(){
+    var text = document.getElementById('text').value;
+    var color = document.getElementById('color').value;
+    var position = document.getElementById('position').value;
+            var time_orin = $('#danmu').data("nowTime")+1;
+            if(time_orin>1000){
+                var time= (time_orin-1000)*10;
+            }
+            else{
+                var time=time_orin;
+            }
+    var size =document.getElementById('text_size').value;
+    var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+'}';
+    $.post("stone.php",{danmu:text_obj});
+    var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+',"isnew":""}';
+    var new_obj=eval('('+text_obj+')');
+    $('#danmu').danmu("addDanmu",new_obj);
+    document.getElementById('text').value='';
+  }
+  //调整透明度函数
+  function op(){
+    var op=document.getElementById('op').value;
+    $('#danmu').danmu("setOpacity",op/100);
+  }
+
+  //调隐藏 显示
+  function changehide() {
+    var op = document.getElementById('op').value;
+    op = op / 100;
+    if (document.getElementById("ishide").checked) {
+      $("#danmu").danmu("setOpacity",1)
+    } else {
+      $("#danmu").danmu("setOpacity",0)
+
+    }
+  }
+
+  //设置弹幕时间
+  function settime(){
+    var t=document.getElementById("set_time").value;
+    t=parseInt(t)
+    $('#danmu').danmu("setTime",t);
+  }
+  //推荐方法
+  function send_danmu() {
+	var text = document.getElementById('danmu_text').value;
+	var color = danmu_color;
+	var position_select = jQuery("[name='danmu_position']").filter(":checked");
+	var position = position_select.attr("value")
+	var position_size = jQuery("[name='danmu_size']").filter(":checked");
+	var size = position_size.attr("value");
+	var time = jQuery('#danmu').data("nowTime") +1;
+	//以上部分为从页面控件中获取用户输入的弹幕内容及选择的颜色等选项
+	var text_obj = '{ text:"' + text + '",color:"' + color + '",size:"' + size + '",position:"' + position + '",time:' + time + '}';    //构造字符串形式的弹幕对象
+	if (url_to_post_danmu)    //url_to_post_danmu 为接受推送的后端地址
+		jQuery.post(url_to_post_danmu, {
+			danmu: text_obj
+		});       //向服务器推送danmu对象的字符串形式
+	var text_obj = '{ text:"' + text + '",color:"' + color + '",size:"' + size + '",position:"' + position + '",time:' + time + ',isnew:""}';   //构造加上了innew属性的字符串danmu对象
+	var new_obj = eval('(' + text_obj + ')');       //转化为js对象
+	jQuery('#danmu').danmu("addAanmu", new_obj);    //向插件中添加该danmu对象
+  };
+
+</script>
+
+</body>
+</html>

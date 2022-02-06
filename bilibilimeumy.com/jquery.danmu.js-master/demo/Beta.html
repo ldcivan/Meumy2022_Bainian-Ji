@@ -1,0 +1,118 @@
+<head>
+    <meta charset="utf8">
+    <script src="/meumycomment/js/jquery-2.2.0.min.js"></script>
+    <script src="/meumycomment/js/jquery.danmu.js"></script>
+    <style>
+        #danmuarea {
+            position: fixed;
+            background: rgb(0,0,0,0);
+            width:100%;
+            height: 445px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top:6%;
+            z-index:250;
+        }
+        .ctr {
+            position: fixed;
+            bottom: 5%;
+            font-size: 1em;
+            line-height: 2em;
+            z-index: 500;
+        }
+    </style>
+</head>
+<body onload="resumer()">
+    <center>
+    <div id="danmuarea">
+        <div id="danmu" >
+        </div>
+    </div>
+    </center>
+    <div class="ctr" >
+        显示弹幕:<input type='checkbox' checked='checked' id='ishide' value='is' onchange='changehide()'>
+        发弹幕:
+        <select  name="color" id="color" >
+            <option value="white">白色</option>
+            <option value="red">红色</option>
+            <option value="green">绿色</option>
+            <option value="blue">蓝色</option>
+            <option value="yellow">黄色</option>
+        </select>
+            <select name="size" id="text_size" >
+            <option value="1">大文字</option>
+            <option value="0">小文字</option>
+        </select>
+        <select name="position" id="position"   >
+            <option value="0">滚动</option>
+            <option value="1">顶端</option>
+            <option value="2">底端</option>
+        </select>
+        <input type="textarea" id="text" max=300 />
+        <button type="button"  onclick="send();">发送</button>
+    </div>
+    <script>
+        $("#danmu").danmu({
+            left:0,
+            top:0,
+            height:"100%",
+            width:"100%",
+            speed:9000,
+            sumTime:105,
+            endtime:100,
+            danmuLoop:true,
+            opacity:0.6,
+            font_size_small:16,
+            font_size_big:24,
+            top_botton_danmu_time:6000
+        });
+        query();//  从后端获取弹幕并添加
+            //一个定时器，监视弹幕时间并更新到页面上
+        function timedCount(){
+            var a = $('#danmu').data("nowTime")
+            $("#time").text(a);
+            if(a >= 1100){
+                $('#danmu').danmu('danmuStop');
+                $('#danmu').danmu('danmuStart');
+            }
+            t=setTimeout("timedCount()",50)
+
+        }
+        timedCount();
+        function query() {
+            $.get("query.php",function(data,status){
+            var danmu_from_sql=eval(data);
+            for (var i=0;i<danmu_from_sql.length;i++){
+                var danmu_ls=eval('('+danmu_from_sql[i]+')');
+                $('#danmu').danmu("addDanmu",danmu_ls);
+                }
+            });
+        }
+        function resumer(){
+            $('#danmu').danmu('danmuResume');
+        }
+        function stoper(){
+            $('#danmu').danmu('danmuStop');}
+        function starter(){
+            $('#danmu').danmu('danmuStart');}
+        function send(){
+            var text = document.getElementById('text').value;
+            var color = document.getElementById('color').value;
+            var position = document.getElementById('position').value;
+            var time_orin = $('#danmu').data("nowTime")+1;
+            if(time_orin>1000){
+                var time= (time_orin-1000)*10;
+            }
+            else{
+                var time=time_orin;
+            }
+            var size =document.getElementById('text_size').value;
+            var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+'}';
+            $.post("stone.php",{danmu:text_obj});
+            var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+',"isnew":""}';
+            var new_obj=eval('('+text_obj+')');
+            $('#danmu').danmu("addDanmu",new_obj);
+            document.getElementById('text').value='';
+        }
+    </script>
+</body>
